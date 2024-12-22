@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { TaskForm } from "@/components/task-form";
 
 export function TaskList() {
@@ -65,14 +65,14 @@ export function TaskList() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 whitespace-normal">
       {tasks.map((task) => (
         <Card key={task._id}>
           <CardHeader>
-            <CardTitle>{task.name}</CardTitle>
+            <CardTitle className=" break-words">{task.name}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{task.description}</p>
+            <p className="break-words">{task.description}</p>
             <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
             <p>Status: {task.status}</p>
             <p>Assigned to: {task.assignedTo?.name}</p>
@@ -83,7 +83,7 @@ export function TaskList() {
                 className="w-full"
               />
             </div>
-            <div className="flex space-x-2 mt-2">
+            <div className="flex gap-3 flex-wrap mt-2">
               <Button
                 onClick={() => updateTaskStatus(task._id, "Pending")}
                 variant={task.status === "Pending" ? "default" : "outline"}

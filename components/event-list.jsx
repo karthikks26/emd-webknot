@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { EventForm } from "@/components/event-form";
 
 export function EventList() {
@@ -51,11 +51,11 @@ export function EventList() {
       {events.map((event) => (
         <Card key={event._id}>
           <CardHeader>
-            <CardTitle>{event.name}</CardTitle>
+            <CardTitle className="break-words">{event.name}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{event.description}</p>
-            <p>Location: {event.location}</p>
+            <p className="break-words">{event.description}</p>
+            <p className="break-words">Location: {event.location}</p>
             <p>Date: {new Date(event.date).toLocaleDateString()}</p>
             <div className="flex space-x-2 mt-2">
               <Button onClick={() => setEditingEvent(event)}>Edit</Button>
