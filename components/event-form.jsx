@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { revalidatePath } from "next/cache";
 
 const formSchema = z.object({
   name: z
@@ -78,7 +77,6 @@ export function EventForm({ event, onSuccess }) {
         variant: "destructive",
       });
     }
-    revalidatePath("/events");
   };
 
   return (
